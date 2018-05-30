@@ -4,7 +4,7 @@ Simple Markup Language
 
 License Type: MIT 
 
-Background: This arose from the need for the CollaboRate project to have a simple and human-readable way to represent hierachical data.
+Background: This arose from the need for the CollaboRate project to have a simple and human-readable way to represent hierarchical data consisting of named nodes of information.
 
 Features of the language:
 1. Leading and trailing enter characters are ignored when finding opening tags. Whitespace however is not ignored.
