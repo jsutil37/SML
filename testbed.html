@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+ <head>
+ <script src="sml.js"></script>
+ </head>
+  <body>
+<button type="button" onclick(alert(JSON.stringify(parseSml(document.getElementById('ta').value))))>Test parseSml()</button><br><br>
+  
+SML text:<br>
+<textarea id="ta">
+
+tag1:
+tag1:
+line1
+line2
+tag2:
+tag2line1
+tag2line2
+END tag2 
+END tag1
+END tag1
+</textarea>
+  </body>
+</html>
