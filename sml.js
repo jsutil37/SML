@@ -15,14 +15,21 @@ function parseSml(text)
 			continue;
 		}
 		var foundTagRef = []
-		if(isStartOfTag(i,text, foundTagRef))
+		var startIdxOfNextLineRef = []
+		if(isStartOfTag(i,text, foundTagRef, startIdxOfNextLineRef))
 		{
+			return parseSmlFromStartOfTag(i,text,foundTagRef[0], startIdxOfNextLineRef[0])
 		}
 		else
 		{
-		
+			return text
 		}
 	}
+}
+
+function parseSmlFromStartOfTag(i,text,foundTag, startIdxOfNextLine)
+{
+	
 }
 
 String.prototype.replaceAll = 
