@@ -19,7 +19,7 @@ Rules of the language:
 Under development
 
 # Usage
-Reference the file https://github.io/CollaboRateMgmt/SML/sml.js in your html file. 
+Reference the file https://collaboratemgmt.github.io/SML/sml.js in your html file. 
 
 # API
  - parseSml(text, noDuplicateTagsExpected): parses text that is in SML format into a JS object.
