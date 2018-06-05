@@ -5,9 +5,22 @@
  <script src="sml.js"></script>
  </head>
   <body>
-<button type="button" onclick="alert(JSON.stringify(parseSml(document.getElementById('ta').value)))">Test parseSml()</button><br><br>
+<button type="button" onclick="f1()">Test parseSml()</button><br><br>
   <script>
    
+function f1()
+{
+   try
+   {
+   var txt = document.getElementById('ta').value
+   var obj = parseSml(txt)
+   alert(JSON.stringify(obj))
+   }
+   catch(e)
+   {
+        alert(e.message)
+   }
+}
    </script>
 SML text:<br>
 <textarea id="ta">
