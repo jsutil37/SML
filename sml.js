@@ -1,7 +1,7 @@
 //repo location: https://github.com/CollaboRateMgmt/SML
 //license: MIT
 "use strict"
-
+alert('loading sml.js')
 let smlShowAlertBeforeThrowingException = true
 
 function parseSml2(text, warningsRef)
