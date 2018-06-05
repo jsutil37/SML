@@ -22,6 +22,6 @@ Under development
 Reference the file https://collaboratemgmt.github.io/SML/sml.js in your html file. 
 
 # API
- - parseSml(text, noDuplicateTagsExpected): parses text that is in SML format into a JS object.
+ - parseSml(text, noDuplicateTagsExpected, warningsRef): parses text that is in SML format into a JS object. warningsRef should be passed in as an empty array. On return of parseSml(), warningsRef will contain a list of warnings if any found during parsing, such as having to ignore opening/closing/fully-formed tags.
  - toSmlString(obj, isInNvFormat): turns a JS object into text that is in SML format. The default value of isInNvFormat is 'autodetect'.
  - Create an HTML widget that allows viewing of SML text with expand and collapse of nodes.
