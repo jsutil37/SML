@@ -6,11 +6,11 @@ let smlShowAlertBeforeThrowingException = true
 
 function parseSml2(text, warningsRef)
 {
-	let listOfOpenTags = []
+	let listOfOpenTags = [{name:"<docu$$ment>",value:[]}]
+	text+="\nEND <docu$$ment>"
 	let someNonBlankNonTagTextPresent = false
 	let lineAtWhichTheNonBlankNonTagTextIsPresent
-	let lines = text.split('\n')
-	let rv=[]
+	let lines = text.split('\n')	
 	for (let i = 0; i < lines.length; i++) 
 	{
 		let line = lines[i]
@@ -18,42 +18,44 @@ function parseSml2(text, warningsRef)
 		let tag
 		if(isStartOfATag(line, foundTagRef))
 		{
-			tag = foundTagRef[0]
+			tag = foundTagRef[0]			
 			if(someNonBlankNonTagTextPresent)
 			{				
 				warningsRef.push("Tag '"+tag+"' at line "+i+" is not considered as an opening tag because there is non-blank text present at line "+lineAtWhichTheNonBlankNonTagTextIsPresent+".")
 				continue;
 			}
-			listOfOpenTags.push([tag,i+1])
+			listOfOpenTags.push({name:tag,value:[],lineNumber:i})
 			continue;
 		}
 		else if(isEndOfATag(line,foundTagRef))
 		{
-			tag = foundTagRef[0]
+			tag = (foundTagRef[0]
 			//For a closing tag, even if some non-blank non-tag text was present, we still need 
 			//to check for matching previously encountered opening tag.
 			let wasOpeningTagFound = false
-			//check whether any open opening tag is present, that matches this closing tag
+			//Check whether any open opening tag is present, that matches this closing tag
 			for(let openingTagIdx = listOfOpenTags.length - 1; openingTagIdx >=0; openingTagIdx--)
 			{
 				let openingTagData = listOfOpenTags[openingTagIdx]
-				let openingTag = openingTagData[0]				
+				let openingTag = openingTagData.name		
 				if(openingTag != tag){continue}			
 				wasOpeningTagFound = true
 				
-				//opening tag was found, but some open tags may be mismatched, 
-				//remove these with warning!
+				//If no mismatch of opening tags, then the FOR loop below will not be entered.
 				for(let openingTagIdx2 = listOfOpenTags.length - 1; openingTagIdx2 > openingTagIdx; openingTagIdx2--)
 				{
+					//opening tag was found, but some open tags may be mismatched, 
+					//remove these with a warning issued for each mismatched tag!
+					
 					let openTagData = listOfOpenTags.pop()
-					let mismatchedTag = openTagData[0]
-					let lineOfMismatchedTag = openTagData[1]-1
+					let mismatchedTag = openTagData.name
+					let lineOfMismatchedTag = openTagData.lineNumber
 					warningsRef.push("Tag '"+mismatchedTag+"' at line "+lineOfMismatchedTag+
-					" is not considered as a closing tag because its closing tag could not be "+
+					" is not considered as a closing tag, because its closing tag could not be "+
 					"found before the closing tag '"+tag+"' at line "+i+".")
 				}
-				let idxAfterOpeningTag = openingTagData[1]
-				let nvpair
+				let idxAfterOpeningTag = openingTagData.lineNumber + 1
+				let completedTagData = listOfOpenTags.pop()
 				if(someNonBlankNonTagTextPresent)
 				{
 					let value=""
@@ -62,41 +64,43 @@ function parseSml2(text, warningsRef)
 						value+=lines[j]
 						if(j != i-1){value+="\n"}
 					}
-					let nvPair ={name: tag, value: value, line:idxAfterOpeningTag-1}
+					completedTagData.value = value
+					someNonBlankNonTagTextPresent = false
 				}
-				else
-				{
-					//hmmmmm
-				}
-				todo - put this either into rv or 3rd element of previously open tag
-				
-				someNonBlankNonTagTextPresent = false
+				if(listOfOpenTags.length == 0){return completedTagData.value}
+				let parentTagData = listOfOpenTags[listOfOpenTags.length - 1]
+				assert(Array.isArray(parentTagData.value))
+				parentTagData.value.push(completedTagData)								
 				break				
 			}
 			if(!wasOpeningTagFound)
 			{
-				todo
+				warningsRef.push("Tag '"+tag+"' at line "+i+
+					" is not considered as a closing tag, because its opening tag could not be found.")
 			}
 		}
 		else if(line.trim() != "")
 		{
 			someNonBlankNonTagTextPresent = true
-			lineAtWhichTheNonBlankNonTagTextIsPresent = i
-			clearChildElementsOfTheCurrentlyOpenTag(openingTagData, warningsRef)
-		}
-		return text
-	}
-	if(someNonBlankNonTagTextPresent)
-	{		
-		clearChildElements(openingTagData, warningsRef)
-		return ""
-	}
-	return rv
-}
-
-function clearChildElementsOfTheCurrentlyOpenTag(openingTagData, warningsRef)
-{
-	
+			lineAtWhichTheNonBlankNonTagTextIsPresent = i			
+			let currentlyOpenTagData = listOfOpenTags[listOfOpenTags.length - 1]
+			if(Array.isArray(currentlyOpenTagData.value))
+			{
+				currentlyOpenTagData.value.forEach
+				(
+					function(childTagData)
+					{
+						warningsRef.push("The completed tag '"+childTagData.name+"' at line "+
+						childTagData.lineNumber+
+						" is not considered as a tag, because the parent tag encountered a line no. "+i+
+						" that is not within a child tag.")
+					}
+				)
+				currentlyOpenTagData.value = null
+			}
+		}		
+	}	
+	shouldnotcomehere
 }
 
 function throwException(msg)
