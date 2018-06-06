@@ -188,7 +188,7 @@ function assert(x)
 }
 function isStartOfATag(line, foundTagRef)
 {
-	if(!line.startsWith("BEGIN "){return false}
+	if(!line.startsWith("BEGIN ")){return false}
 	let tag = line.trimRight()
 	if(tag.length <= 6){return false}//6 = "BEGIN ".length	
 	tag = tag.substring(6)
@@ -199,7 +199,7 @@ function isStartOfATag(line, foundTagRef)
 
 function isEndOfATag(line, foundTagRef)
 {	
-	if(!line.startsWith("END "){return false}
+	if(!line.startsWith("END ")){return false}
 	let tag = line.trimRight()
 	if(tag.length <= 4){return false}//4 = "END ".length	
 	tag = tag.substring(4)
