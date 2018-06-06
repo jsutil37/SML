@@ -118,7 +118,7 @@ function throwException(msg)
 	{
 		alert(msg)
 	}
-	throw msg
+	throw new Error(msg)
 }
 
 
