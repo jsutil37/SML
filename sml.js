@@ -159,7 +159,7 @@ function nvArrToJsObj(nvArr,pathObj)
 			uniqueKeys[k]=0
 			if(isADuplicateKey && Object.keys(uniqueKeys).length > 1)
 			{
-				throwException(JSON.stringify(pathToObj) + " - duplicate key '" + k "' at idx "+idx+
+				throwException(JSON.stringify(pathToObj) + " - duplicate key '" + k + "' at idx "+idx+
 					" - cannot convert to JS object! ")
 			}			
 			rvMustBeAnArray = isADuplicateKey
