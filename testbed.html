@@ -18,7 +18,7 @@ function f1()
    }
    catch(e)
    {
-        alert(e.message)
+        alert(e.message+"\n"+JSON.stringify(e.stack))
    }
 }
    </script>
