@@ -13,7 +13,9 @@ function f1()
    try
    {
    var txt = document.getElementById('ta').value
-   var obj = parseSml(txt)
+   var warningsRef = []
+   var obj = parseSml(txt, warningsRef)
+   alert("warnings:\n"+JSON.stringify(warningsRef))
    alert(JSON.stringify(obj))
    }
    catch(e)
