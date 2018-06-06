@@ -1,8 +1,17 @@
 //repo location: https://github.com/CollaboRateMgmt/SML
 //license: MIT
 "use strict"
-alert('loading sml.js')
+
 let smlShowAlertBeforeThrowingException = true
+
+function parseSml(text, noDuplicateTagsExpected, warningsRef)
+{
+	//convert to unix format
+	text = text.replaceAll("\r\n","\n")
+	let rv = parseSml2(text, warningsRef)
+	if(!noDuplicateTagsExpected){return rv}
+	return nvArrBasedObjToJsObj(rv,[])
+}
 
 function parseSml2(text, warningsRef)
 {
@@ -112,14 +121,7 @@ function throwException(msg)
 	throw msg
 }
 
-function parseSml(text, noDuplicateTagsExpected, warningsRef)
-{
-	//convert to unix format
-	text = text.replaceAll("\r\n","\n")
-	let rv parseSml2(text, warningsRef)
-	if(!noDuplicateTagsExpected){return rv}
-	return nvArrBasedObjToJsObj(rv,[])
-}
+
 
 function nvArrBasedObjToJsObj(nvArrBasedObj,pathToObj)
 {
