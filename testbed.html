@@ -14,7 +14,7 @@ function f1()
    {
    var txt = document.getElementById('ta').value
    var warningsRef = []
-   var obj = parseSml(txt, warningsRef)
+   var obj = parseSml(txt, true, warningsRef)
    alert("warnings:\n"+JSON.stringify(warningsRef))
    alert(JSON.stringify(obj))
    }
@@ -27,11 +27,11 @@ function f1()
 SML text:<br>
 <textarea id="ta">
 
-tag1:
-tag1:
+BEGIN tag1
+BEGIN tag1
 line1
 line2
-tag2:
+BEGIN tag2
 tag2line1
 tag2line2
 END tag2 
