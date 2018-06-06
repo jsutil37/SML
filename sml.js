@@ -169,8 +169,10 @@ function nvArrToJsObj(nvArr,pathObj)
 			}
 			rvMightBeAnArray = (rvMustBeAnArray || idx == 0)			
 			if(rvMightBeAnArray)
-			{		
-				rvArr.push({""+k:v})				
+			{
+				let obj = {}
+				obj[k] = v
+				rvArr.push(obj)				
 			}		
 		}
 	)
