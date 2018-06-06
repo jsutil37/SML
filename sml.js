@@ -183,8 +183,7 @@ function nvArrToJsObj(nvArr,pathObj)
 function assert(x)
 {
 	if(x){return}
-	alert('assertion failed')
-	throw new Exception("assertion failed")
+	throwException("assertion failed")
 }
 function isStartOfATag(line, foundTagRef)
 {
