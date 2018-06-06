@@ -29,7 +29,7 @@ function parseSml2(text, warningsRef)
 		}
 		else if(isEndOfATag(line,foundTagRef))
 		{
-			tag = (foundTagRef[0]
+			tag = foundTagRef[0]
 			//For a closing tag, even if some non-blank non-tag text was present, we still need 
 			//to check for matching previously encountered opening tag.
 			let wasOpeningTagFound = false
