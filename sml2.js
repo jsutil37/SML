@@ -1,4 +1,4 @@
-alert'from sml2.js')
+alert('from sml2.js')
 
 function f2()
 {
