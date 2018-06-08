@@ -9,6 +9,7 @@ function parseSml(text, noDuplicateTagsExpected, warningsRef)
 	//convert to unix format
 	text = text.replaceAll("\r\n","\n")
 	let rv = parseSml2(text, warningsRef)
+	alert('rv='+JSON.stringify(rv)
 	if(!noDuplicateTagsExpected){return rv}
 	return nvArrBasedObjToJsObj(rv,[])
 }
