@@ -138,8 +138,7 @@ function nvArrBasedObjToJsObj(nvArrBasedObj,pathToObj)
 	{
 		return nvArrToJsObj(nvArr,pathObj)
 	}
-	alert("Line 141: "+JSON.stringify(nvArrBasedObj))
-	assert(nvArrBasedObj.keys.length == 3)//name, value, lineNumber
+	assert(Object.keys(nvArrBasedObj).length == 3)//name, value, lineNumber
 	let rv = {}
 	rv[nvArrBasedObj.name] = nvArrBasedObj.value
 	return rv
