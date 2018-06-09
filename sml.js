@@ -77,6 +77,10 @@ function parseSml2(text, warningsRef)
 					completedTagData.value = value
 					someNonBlankNonTagTextPresent = false
 				}
+				if(Array.isArray(completedTagData.value) && completedTagData.value.length==1)
+				{
+					completedTagData.value =  completedTagData.value[0]
+				}
 				if(listOfOpenTags.length == 0){return completedTagData.value}
 				let parentTagData = listOfOpenTags[listOfOpenTags.length - 1]
 				assert(Array.isArray(parentTagData.value))
