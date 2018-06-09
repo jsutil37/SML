@@ -134,14 +134,14 @@ function nvArrBasedObjToJsObj(nvArrBasedObj,pathToObj)
 	{
 		return nvArrBasedObj		
 	}
-	if(typeof nvArrBasedObj == "object")
+	if(Array.isArray(nvArrBasedObj))
 	{
-		assert(nvArrBasedObj.keys.length == 1)
-		let rv = {}
-		rv[nvArrBasedObj.name] = nvArrBasedObj.value
-		return rv
+		return nvArrToJsObj(nvArr,pathObj)
 	}
-	return nvArrToJsObj(nvArr,pathObj)
+	assert(nvArrBasedObj.keys.length == 3)//name, value, lineNumber
+	let rv = {}
+	rv[nvArrBasedObj.name] = nvArrBasedObj.value
+	return rv
 }
 
 function nvArrToJsObj(nvArr,pathObj)
