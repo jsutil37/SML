@@ -26,5 +26,5 @@ Reference the file https://collaboratemgmt.github.io/SML/sml.js in your html fil
  - toSmlString(obj, isInNvFormat): turns a JS object into text that is in SML format. The default value of isInNvFormat is 'autodetect'.
  - Create an HTML widget that allows viewing of SML text with expand and collapse of nodes.
  
- #Testing
+ # Testing
  A testbed has been created at https://collaboratemgmt.github.io/SML/testbed.html
