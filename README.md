@@ -4,7 +4,7 @@ Simple Markup Language - a more readable, simple and intuitive alternative than 
 
 License Type: MIT 
 
-Intro and Background: This arose from the need for the CollaboRate project to have a simple, intuitive and readable way to represent hierarchical data consisting of named nodes of information. Specifically in terms of readability, Enter characters in the information should be shown as such rather than `'\n'`.
+Intro and Background: This arose from the need to have a simple, intuitive and readable way to represent hierarchical data consisting of named nodes of information. Specifically in terms of readability, Enter characters in the information should be shown as such rather than `'\n'`.
 
 Rules of the language:
 1. An opening tag is a non-blank line of text starting with the word 'BEGIN' in all caps followed by a single space and then a non-whitespace character. Similarly, a closing tag is a non-blank line of text starting with the word 'END' in all caps followed by a single space and then a non-whitespace character. Both opening the closing tags end with the end of the line.
@@ -19,7 +19,7 @@ Rules of the language:
 Under development
 
 # Usage
-Reference the file https://collaboratemgmt.github.io/SML/sml.js in your html file. 
+Reference the file https://sohrabsaran.github.io/SML/sml.js in your html file. 
 
 # API
  - parseSml(text, noDuplicateTagsExpected, warningsRef): parses text that is in SML format into a JS object. warningsRef should be passed in as an empty array. On return of parseSml(), warningsRef will contain a list of warnings if any found during parsing, such as having to ignore opening/closing/fully-formed tags.
@@ -27,4 +27,4 @@ Reference the file https://collaboratemgmt.github.io/SML/sml.js in your html fil
  - Create an HTML widget that allows viewing of SML text with expand and collapse of nodes.
  
  # Testing
- A testbed has been created at https://collaboratemgmt.github.io/SML/testbed.html
+ A testbed has been created at https://sohrabsaran.github.io/SML/testbed.html
