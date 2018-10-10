@@ -21,9 +21,10 @@ function parseSml2(text, warningsRef)
 	let someNonBlankNonTagTextPresent = false
 	let lineAtWhichTheNonBlankNonTagTextIsPresent
 	let lines = text.split('\n')	
-	for (let i = 0; i < lines.length; i++) 
+	for (let lineIdx = 0; lineIdx < lines.length; lineIdx++) 
 	{
-		let line = lines[i]
+		let line = lines[lineIdx]
+		let i = lineIdx+1//line number
 		let foundTagRef = []
 		let tag
 		if(isStartOfATag(line, foundTagRef))
